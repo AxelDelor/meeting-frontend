@@ -7,5 +7,6 @@ export async function getRooms() {
     const errorBody = await response.json();
     throw new Error(errorBody.message);
   }
-  return response.json();
+
+  return response.json()
 }

@@ -1,7 +1,7 @@
 const API_URL = "http://localhost:8080";
 
-export async function getBookings() {
-  const response = await fetch(`${API_URL}/bookings`);
+export async function getRoomBookings(roomId) {
+  const response = await fetch(`${API_URL}/bookings?roomId=${roomId}`);
 
   if (!response.ok) {
     const errorBody = await response.json();
