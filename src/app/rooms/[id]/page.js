@@ -1,14 +1,22 @@
-import { getRooms } from "../../lib/rooms";
-import { getRoomBookings } from "@/app/lib/bookings";
+import { getRooms, getRoomBookings, ApiError } from "@/app/lib/api";
+import { notFound } from "next/navigation";
 
 export default async function RoomDetail({ params }) {
   const { id } = await params;
-  const roomBookings = await getRoomBookings(id);
-  const rooms = await getRooms();
-  const room = rooms.find((r) => r.id === Number(id));
 
-  if (!room) {
-    return <h1>Salle introuvable</h1>;
+  let rooms;
+  let roomBookings;
+  let room;
+
+  try {
+    rooms = await getRooms();
+    roomBookings = await getRoomBookings(id);
+    room = rooms.find((r) => r.id === Number(id));
+  } catch (error) {
+    if (error instanceof ApiError && error.status === 404) {
+      notFound();
+    }
+    throw error;
   }
 
   return (

@@ -1,4 +1,4 @@
-import { getRooms } from "./lib/rooms";
+import { getRooms } from "./lib/api";
 import RoomList from "./components/RoomList";
 
 export default async function Home() {
