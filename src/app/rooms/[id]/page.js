@@ -1,17 +1,17 @@
-import { getRooms, getRoomBookings, ApiError } from "@/app/lib/api";
+import { getRoom, getRoomBookings, ApiError } from "@/app/lib/api";
 import { notFound } from "next/navigation";
 
 export default async function RoomDetail({ params }) {
   const { id } = await params;
 
-  let rooms;
-  let roomBookings;
   let room;
+  let roomBookings;
 
   try {
-    rooms = await getRooms();
-    roomBookings = await getRoomBookings(id);
-    room = rooms.find((r) => r.id === Number(id));
+    [room, roomBookings] = await Promise.all([
+      getRoom(id),
+      getRoomBookings(id),
+    ]);
   } catch (error) {
     if (error instanceof ApiError && error.status === 404) {
       notFound();

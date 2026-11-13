@@ -1,13 +1,22 @@
-const API_URL = "http://localhost:8080";
-
 export async function getRoomBookings(roomId) {
-  const response = await fetch(`${API_URL}/bookings?roomId=${roomId}`);
+  const response = await fetch(
+    `${process.env.API_URL}/bookings?roomId=${encodeURIComponent(roomId)}`,
+    { cache: "no-store" },
+  );
 
   return responseGuard(response);
 }
 
 export async function getRooms() {
-  const response = await fetch(`${API_URL}/rooms`);
+  const response = await fetch(`${process.env.API_URL}/rooms`, { cache: "no-store" });
+
+  return responseGuard(response);
+}
+
+export async function getRoom(id) {
+  const response = await fetch(`${process.env.API_URL}/rooms/${encodeURIComponent(id)}`, {
+    cache: "no-store",
+  });
 
   return responseGuard(response);
 }
@@ -24,8 +33,8 @@ async function responseGuard(response) {
 }
 
 export class ApiError extends Error {
-    constructor(status, detail) {
-        super(detail);
-        this.status = status
-    } 
+  constructor(status, detail) {
+    super(detail);
+    this.status = status;
+  }
 }
