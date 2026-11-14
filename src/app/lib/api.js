@@ -7,8 +7,26 @@ export async function getRoomBookings(roomId) {
   return responseGuard(response);
 }
 
+export async function createBooking(title, organizer, roomId, startTime, endTime) {
+  const response = await fetch(`${process.env.API_URL}/bookings`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      title,
+      organizer,
+      roomId,
+      startTime,
+      endTime,
+    }),
+  });
+
+  return responseGuard(response);
+}
+
 export async function getRooms() {
-  const response = await fetch(`${process.env.API_URL}/rooms`, { cache: "no-store" });
+  const response = await fetch(`${process.env.API_URL}/rooms`, {
+    cache: "no-store",
+  });
 
   return responseGuard(response);
 }
