@@ -1,3 +1,4 @@
+import BookForm from "@/app/components/BookForm";
 import { getRoom, getRoomBookings, ApiError } from "@/app/lib/api";
 import { notFound } from "next/navigation";
 
@@ -38,6 +39,7 @@ export default async function RoomDetail({ params }) {
       ) : (
         <p>Aucune réservations pour le moment</p>
       )}
+      <BookForm roomId={id}/>
     </main>
   );
 }

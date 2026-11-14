@@ -7,7 +7,7 @@ export async function getRoomBookings(roomId) {
   return responseGuard(response);
 }
 
-export async function createBooking(title, organizer, roomId, startTime, endTime) {
+export async function createBooking({title, organizer, roomId, startTime, endTime}) {
   const response = await fetch(`${process.env.API_URL}/bookings`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
