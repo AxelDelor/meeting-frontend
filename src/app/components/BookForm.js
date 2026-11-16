@@ -11,63 +11,59 @@ export default function BookForm({ roomId }) {
   });
 
   return (
-    <>
-      <form action={action} className="max-w-sm mx-auto">
+    <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mt-5">
+      <form action={action} className="card-body">
         <div className="mb-5">
-          <label className="block mb-2.5 text-sm font-medium ">Booking title</label>
+          <label className="label">Booking title</label>
           <input
             name="title"
             maxLength={60}
             required
             type="text"
             defaultValue={state.values.title}
-            className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+            className="input"
             placeholder="Réu du 15"
           />
         </div>
         <div className="mb-5">
-          <label className="block mb-2.5 text-sm font-medium">Organizer</label>
+          <label className="label">Organizer</label>
           <input
             name="organizer"
             maxLength={60}
             required
             type="text"
             defaultValue={state.values.organizer}
-            className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+            className="input"
             placeholder="Jane Doe"
           />
         </div>
         <input type="hidden" name="roomId" value={roomId} />
         <div className="mb-5">
-          <label className="block mb-2.5 text-sm font-medium">Start time</label>
+          <label className="label">Start time</label>
           <input
             name="startTime"
             required
             type="datetime-local"
             defaultValue={state.values.startTime}
-            className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+            className="input"
           />
         </div>
         <div className="mb-5">
-          <label className="block mb-2.5 text-sm font-medium">End time</label>
+          <label className="label">End time</label>
           <input
             name="endTime"
             required
             type="datetime-local"
             defaultValue={state.values.endTime}
-            className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+            className="input"
           />
         </div>
         {state.error === null ? null : <p>{state.error}</p>}
         {state.success ? <p>Your booking has successfully been recorded</p> : null}
-        <button
-          type="submit"
-          disabled={isPending}
-          className="bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
-        >
+        <button type="submit" disabled={isPending} className="btn">
           Confirm
         </button>
       </form>
-    </>
+    </div>
   );
 }

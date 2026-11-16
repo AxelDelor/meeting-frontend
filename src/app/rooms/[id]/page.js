@@ -9,6 +9,7 @@ export default async function RoomDetail({ params }) {
   let roomBookings;
 
   try {
+
     [room, roomBookings] = await Promise.all([
       getRoom(id),
       getRoomBookings(id),
