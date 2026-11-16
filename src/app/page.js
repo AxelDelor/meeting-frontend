@@ -6,7 +6,7 @@ export default async function Home() {
 
   return (
     <main>
-      <h1>Salles disponibles</h1>
+      <h1>Available rooms</h1>
       <RoomList rooms={rooms} />
     </main>
   );

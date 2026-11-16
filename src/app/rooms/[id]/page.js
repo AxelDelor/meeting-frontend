@@ -23,21 +23,21 @@ export default async function RoomDetail({ params }) {
   return (
     <main>
       <h1>{room.name}</h1>
-      <p>Étage: {room.floor}</p>
-      <p>Capacité: {room.capacity}</p>
-      <h1>Réservations</h1>
+      <p>Floor: {room.floor}</p>
+      <p>Capacity: {room.capacity}</p>
+      <h1>Bookings</h1>
       {roomBookings.length > 0 ? (
         roomBookings.map((rb) => (
           <ul key={rb.id}>
             <li>
-              {rb.title} par {rb.organizer}, début:{" "}
-              {new Date(rb.startTime).toLocaleString("fr-FR")} fin:{" "}
+              {rb.title} by {rb.organizer}, beginning:{" "}
+              {new Date(rb.startTime).toLocaleString("fr-FR")} end:{" "}
               {new Date(rb.endTime).toLocaleString("fr-FR")}{" "}
             </li>
           </ul>
         ))
       ) : (
-        <p>Aucune réservations pour le moment</p>
+        <p>There is no bookings for now</p>
       )}
       <BookForm roomId={id}/>
     </main>
